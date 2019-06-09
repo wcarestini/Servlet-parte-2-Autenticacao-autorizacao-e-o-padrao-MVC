@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.carestini.gerenciador.modelo.Banco;
 import br.com.carestini.gerenciador.modelo.Empresa;
 
-public class MostraEmpresa {
+public class MostraEmpresa implements Acao {
 	
-	public void mostra(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		System.out.println("mostra empresa");
 		String paramId = request.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 		
@@ -25,8 +26,7 @@ public class MostraEmpresa {
 		
 		request.setAttribute("empresa", empresa);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-		rd.forward(request, response);
+		return "forward:formAlteraEmpresa.jsp";
 	}
 	
 }

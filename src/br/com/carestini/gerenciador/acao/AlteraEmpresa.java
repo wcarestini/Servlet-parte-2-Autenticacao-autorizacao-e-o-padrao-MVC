@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.carestini.gerenciador.modelo.Banco;
 import br.com.carestini.gerenciador.modelo.Empresa;
 
-public class AlteraEmpresa {
+public class AlteraEmpresa implements Acao {
 	
-	public void altera(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		System.out.println("altera empresa");
 		String nomeEmpresa = request.getParameter("nome");
 		String paramDataEmpresa = request.getParameter("data");
 		Integer id = Integer.valueOf(request.getParameter("id"));
@@ -35,7 +35,7 @@ public class AlteraEmpresa {
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 		
-		response.sendRedirect("entrada?acao=listaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 		
 	}
 	

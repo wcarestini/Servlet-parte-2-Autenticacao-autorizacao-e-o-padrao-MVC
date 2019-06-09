@@ -13,25 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.carestini.gerenciador.modelo.Banco;
 import br.com.carestini.gerenciador.modelo.Empresa;
 
-public class NovaEmpresa implements Acao {
+public class NovaEmpresaForm implements Acao {
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		String nomeDaEmpresa = request.getParameter("nome");
-		String paramDataEmpresa = request.getParameter("data");
-		
-		Date dataAbertura = null;
-		try{
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			dataAbertura = sdf.parse(paramDataEmpresa);
-		} catch (ParseException e){
-			throw new ServletException(e);
-		}
-		
-		
-		new Banco().adiciona(new Empresa(nomeDaEmpresa));
-		
-		return "rdirect:entrada?acao=ListaEmpresas";
+		return "forward:formNovaEmpresa.jsp";
 	}
 	
 }

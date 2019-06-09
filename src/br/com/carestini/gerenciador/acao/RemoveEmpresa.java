@@ -7,16 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.carestini.gerenciador.modelo.Banco;
 
-public class RemoveEmpresa {
+public class RemoveEmpresa implements Acao {
 	
-	public void remove(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		String paramId = request.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 		
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);
 		
-		response.sendRedirect("entrada?acao=listaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
 	
 }

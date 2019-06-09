@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.carestini.gerenciador.modelo.Banco;
 import br.com.carestini.gerenciador.modelo.Empresa;
 
-public class ListaEmpresas {
+public class ListaEmpresas implements Acao {
 
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Banco banco = new Banco();
 		List<Empresa> listaEmpresas = banco.getEmpresas();
 
 		request.setAttribute("empresas", listaEmpresas);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/listaempresas.jsp");
-		rd.forward(request, response);
+		return "forward:listaempresas.jsp";
 	}
 
 }
