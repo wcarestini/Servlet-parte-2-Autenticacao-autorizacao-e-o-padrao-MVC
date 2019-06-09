@@ -10,6 +10,9 @@
 <title>Title</title>
 </head>
 <body>
+	<c:import url="logout-parcial.jsp" />
+
+	Usuario Logado: ${usuarioLogado.login}
 
 	<c:if test="${not empty nomeEmpresa}">
 			Empresa ${ nomeEmpresa } cadastrada com sucesso!
