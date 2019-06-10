@@ -13,44 +13,12 @@ import javax.servlet.http.HttpSession;
 import br.com.carestini.gerenciador.acao.Acao;
 
 
-@WebServlet("/entrada")
+//@WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("entrada");
 		
-		String paramAcao = request.getParameter("acao");
-		
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null );
-		boolean acaoProtegida = !(paramAcao.equals("Login") || paramAcao.equals("LoginForm"));
-		
-		if(acaoProtegida && usuarioNaoEstaLogado){
-			response.sendRedirect("entrada?acao=LoginForm");
-			return;
-		}
-		
-		String nomeDaClasse = "br.com.carestini.gerenciador.acao."+paramAcao;
-		
-		String nome;
-		try {
-			Class classe = Class.forName(nomeDaClasse);
-			Acao acao = (Acao) classe.newInstance();
-			nome = acao.executa(request, response);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			throw new ServletException(e);
-		}
-		
-		String[] tipoEEndereco = nome.split(":");
-		
-		if(tipoEEndereco[0].equals("forward")){
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/"+tipoEEndereco[1]);
-			rd.forward(request, response);
-		} else {
-			response.sendRedirect(tipoEEndereco[1]);
-		}
 		
 	}
 
